@@ -1,0 +1,29 @@
+name: Relatar problema
+description: Registre uma falha reproduzível sem anexar dados reais.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Não publique backups, comprovantes, documentos, credenciais ou dados domésticos reais."
+  - type: textarea
+    id: problem
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o comportamento observado.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Como reproduzir?
+      description: Use somente dados fictícios.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Navegador e sistema
+      placeholder: "Firefox, Linux"
+    validations:
+      required: true
