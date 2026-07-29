@@ -1,0 +1,16 @@
+{
+  "name": "boletosmil",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "privacy": "node scripts/privacy-scan.mjs",
+    "syntax": "node --check app.js && node --check sw.js && node --check src/domain.js",
+    "build": "node scripts/build.mjs",
+    "check": "npm run privacy && npm run syntax && npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

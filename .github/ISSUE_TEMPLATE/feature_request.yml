@@ -1,0 +1,28 @@
+name: Propor melhoria
+description: Sugira uma melhoria coerente com privacidade e uso offline.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Necessidade
+      description: Que problema doméstico a proposta resolve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+      description: Explique o fluxo mínimo, sem usar dados reais.
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Princípios
+      options:
+        - label: A proposta pode funcionar sem cadastro obrigatório.
+          required: true
+        - label: A proposta preserva uso offline sempre que possível.
+          required: true
