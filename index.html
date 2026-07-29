@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#1f312c" />
+    <meta name="application-name" content="Boletos Mil" />
     <meta name="description" content="Boletos Mil organiza contas, parcelas e comprovantes localmente, sem cadastro e sem nuvem obrigatória." />
+    <meta name="robots" content="index,follow" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icons/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
@@ -13,6 +15,35 @@
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div id="app"></div>
+    <script>
+      (() => {
+        const storagePrefixes = ["finplan26:"];
+        const cachePrefixes = ["nova-era-", "acarai-", "finplan26-"];
+        const purgeStorage = (storage) => {
+          try {
+            const keys = [];
+            for (let index = 0; index < storage.length; index += 1) {
+              const key = storage.key(index);
+              if (key && storagePrefixes.some((prefix) => key.startsWith(prefix))) keys.push(key);
+            }
+            keys.forEach((key) => storage.removeItem(key));
+          } catch {
+            // O navegador pode bloquear armazenamento em modos restritos.
+          }
+        };
+
+        purgeStorage(window.localStorage);
+        purgeStorage(window.sessionStorage);
+
+        if ("caches" in window) {
+          window.caches.keys()
+            .then((keys) => Promise.all(keys
+              .filter((key) => cachePrefixes.some((prefix) => key.startsWith(prefix)))
+              .map((key) => window.caches.delete(key))))
+            .catch(() => {});
+        }
+      })();
+    </script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
